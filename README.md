@@ -1,7 +1,7 @@
 npm
 ===
 
-[![Build Status](https://travis-ci.org/typesafehub/npm.png?branch=master)](https://travis-ci.org/typesafehub/npm)
+[![Build Status](https://api.travis-ci.org/typesafehub/npm.png?branch=master)](https://travis-ci.org/typesafehub/npm)
 
 This is a JVM wrapper around the [Node Package Manager (NPM)](http://npmjs.org).
 The NPM that is run is the real NPM. The [JS Engine project](http://githubc.com/typesafe/js-engine) is
