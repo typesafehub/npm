@@ -11,10 +11,10 @@ import java.io.File
 
 object Main {
   def main(args: Array[String]) {
-    implicit val system = ActorSystem("npm-system")
+    val system = ActorSystem("npm-system")
     implicit val timeout = Timeout(60.seconds)
 
-    system.scheduler.scheduleOnce(62.seconds) {
+    system.scheduler.scheduleOnce(timeout.duration + 2.seconds) {
       system.shutdown()
       System.exit(1)
     }
