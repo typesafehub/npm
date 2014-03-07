@@ -102,17 +102,3 @@ Example:
       * Details 1
       * Details 2
       * Details 3
-
-## How To Enforce These Guidelines?
-
-### Make Use Of Typesafe’s Pull Request Validator
-It is recommended to set up the project to use Typesafe’s [Pull Request Validator](https://github.com/typesafehub/ghpullrequest-validator) that automatically merges the code, builds it, runs the tests and comments on the Pull Request in GitHub.
-
-### Add A CONTRIBUTING.md File To GitHub
-
-It is recommended that each project add a ``CONTRIBUTING.md`` file (preferably this document) to their project on GitHub. This makes people get a notice about it when they try to open a Pull Request. Read more about it  [here](https://github.com/blog/1184-contributing-guidelines).
-
-## Misc Topics
-
-### SIPs (only applies to Scala project)
-A SIP (Scala Improvement Process) needs an implementation, including cross-feature testing before we can accept it. There should be a clear distinction between "Approved To Develop" vs. "Accepted For Release X".
