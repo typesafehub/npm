@@ -23,7 +23,8 @@ class Npm(engine: ActorRef, npmFile: File) {
     args ++= names
     invokeNpm(args)
   }
-
+  
+  // TODO: Stream the stdio Source objects once they become available.
   private def invokeNpm(args: ListBuffer[String])
                        (implicit timeout: Timeout): Future[JsExecutionResult] = {
     (engine ? Engine.ExecuteJs(npmFile, args.to[immutable.Seq], timeout.duration)).mapTo[JsExecutionResult]
