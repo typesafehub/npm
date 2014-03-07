@@ -1,0 +1,7 @@
+{
+    "name": "somename",
+    "version": "1.0.0",
+    "dependencies": {
+         "amdefine": "0.1.0"
+    }
+}
