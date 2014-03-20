@@ -5,7 +5,6 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "io.apigee.trireme" % "trireme-core" % "0.7.1-SNAPSHOT",
   "org.slf4j" % "slf4j-simple" % "1.7.6"
 )
 
