@@ -2,7 +2,7 @@ organization := "com.typesafe"
 
 name := "npm"
 
-version := "1.0.0-RC1"
+version := "1.0.0-SNAPSHOT"
 
 scalaVersion := "2.10.4"
 
