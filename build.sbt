@@ -7,7 +7,7 @@ version := "1.0.0-SNAPSHOT"
 scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-  "com.typesafe" %% "jse" % "1.0.0-RC1",
+  "com.typesafe" %% "jse" % "1.0.0-SNAPSHOT",
   "org.webjars" % "npm" % "1.3.26",
   "com.typesafe.akka" %% "akka-actor" % "2.3.2",
   "org.webjars" % "webjars-locator" % "0.14",

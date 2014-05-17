@@ -11,4 +11,4 @@ libraryDependencies ++= Seq(
 fork in run := true
 
 //javaOptions := Seq("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
-//javaOptions := Seq("-Dorg.slf4j.simpleLogger.defaultLogLevel=debug")
+javaOptions := Seq("-Dorg.slf4j.simpleLogger.defaultLogLevel=debug")
