@@ -2,12 +2,12 @@ organization := "com.typesafe"
 
 name := "npm"
 
-version := "1.0.0-SNAPSHOT"
+version := "1.0.0-RC2"
 
 scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-  "com.typesafe" %% "jse" % "1.0.0-SNAPSHOT",
+  "com.typesafe" %% "jse" % "1.0.0-RC2",
   "org.webjars" % "npm" % "1.3.26",
   "com.typesafe.akka" %% "akka-actor" % "2.3.2",
   "org.webjars" % "webjars-locator" % "0.14",
