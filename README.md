@@ -27,3 +27,5 @@ Some sample usage from Scala:
       println(s"output\n======\n${new String(result.output.toArray, "UTF-8")}\n")
       println(s"error\n=====\n${new String(result.error.toArray, "UTF-8")}\n")
 ```
+
+> Note that this module requires JDK 7 when running Trireme given the additional file system support required. If JDK 6 is required then use Node as the engine.
