@@ -1,7 +1,5 @@
 package com.typesafe.jse
 
-import org.junit.runner.RunWith
-import org.specs2.runner.JUnitRunner
 import org.specs2.mutable.Specification
 import java.io.File
 import org.specs2.time.NoTimeConversions
@@ -11,7 +9,6 @@ import com.typesafe.npm.{NpmLoader, Npm}
 import scala.concurrent.Await
 import scala.concurrent.duration._
 
-@RunWith(classOf[JUnitRunner])
 class NpmSpec extends Specification with NoTimeConversions {
 
   def withEngine[T](block: ActorRef => T): T = {
