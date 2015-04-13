@@ -1,36 +1,47 @@
 organization := "com.typesafe"
-
 name := "npm"
-
-version := "1.0.1-SNAPSHOT"
 
 scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-  "com.typesafe" %% "jse" % "1.0.0",
+  "com.typesafe" %% "jse" % "1.1.0",
   "org.webjars" % "npm" % "1.3.26",
-  "com.typesafe.akka" %% "akka-actor" % "2.3.2",
-  "org.webjars" % "webjars-locator" % "0.14",
-  "org.specs2" %% "specs2" % "2.3.11" % "test",
+  "com.typesafe.akka" %% "akka-actor" % "2.3.9",
+  "org.webjars" % "webjars-locator" % "0.21",
+  "org.specs2" %% "specs2-core" % "3.4" % "test",
   "junit" % "junit" % "4.11" % "test"
 )
-
-resolvers ++= Seq(
-  Resolver.sonatypeRepo("snapshots"),
-  Resolver.mavenLocal,
-  "Typesafe Releases Repository" at "http://repo.typesafe.com/typesafe/releases/",
-  "Typesafe Snapshots Repository" at "http://repo.typesafe.com/typesafe/snapshots/"
-)
-
-publishTo := {
-    val typesafe = "http://private-repo.typesafe.com/typesafe/"
-    val (name, url) = if (isSnapshot.value)
-                        ("sbt-plugin-snapshots", typesafe + "maven-snapshots")
-                      else
-                        ("sbt-plugin-releases", typesafe + "maven-releases")
-    Some(Resolver.url(name, new URL(url)))
-}
+// Required by specs2 to get scalaz-stream
+resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 lazy val root = project in file(".")
 
 lazy val `npm-tester` = project.dependsOn(root)
+
+// Publish settings
+publishTo := {
+  if (isSnapshot.value) Some(Opts.resolver.sonatypeSnapshots)
+  else Some(Opts.resolver.sonatypeStaging)
+}
+homepage := Some(url("https://github.com/typesafehub/npm"))
+licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.html"))
+pomExtra := {
+  <scm>
+    <url>git@github.com:typesafehub/npm.git</url>
+    <connection>scm:git:git@github.com:typesafehub/npm.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>playframework</id>
+      <name>Play Framework Team</name>
+      <url>https://github.com/playframework</url>
+    </developer>
+  </developers>
+}
+pomIncludeRepository := { _ => false }
+
+// Release settings
+releaseSettings
+ReleaseKeys.crossBuild := true
+ReleaseKeys.publishArtifactsAction := PgpKeys.publishSigned.value
+ReleaseKeys.tagName := (version in ThisBuild).value
