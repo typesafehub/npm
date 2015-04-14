@@ -40,8 +40,13 @@ pomExtra := {
 }
 pomIncludeRepository := { _ => false }
 
+// Sonatype settings
+sonatypeSettings
+SonatypeKeys.profileName := "com.typesafe"
+
 // Release settings
 releaseSettings
 ReleaseKeys.crossBuild := true
 ReleaseKeys.publishArtifactsAction := PgpKeys.publishSigned.value
 ReleaseKeys.tagName := (version in ThisBuild).value
+ReleaseKeys.releaseProcess += sbtrelease.releaseTask(SonatypeKeys.sonatypeReleaseAll)
