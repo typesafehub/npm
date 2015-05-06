@@ -4,7 +4,7 @@ name := "npm"
 scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-  "com.typesafe" %% "jse" % "1.1.0",
+  "com.typesafe" %% "jse" % "1.1.1",
   "org.webjars" % "npm" % "1.3.26",
   "com.typesafe.akka" %% "akka-actor" % "2.3.9",
   "org.webjars" % "webjars-locator" % "0.21",
@@ -49,4 +49,4 @@ releaseSettings
 ReleaseKeys.crossBuild := true
 ReleaseKeys.publishArtifactsAction := PgpKeys.publishSigned.value
 ReleaseKeys.tagName := (version in ThisBuild).value
-ReleaseKeys.releaseProcess += sbtrelease.releaseTask(SonatypeKeys.sonatypeReleaseAll)
+ReleaseKeys.releaseProcess += sbtrelease.releaseTask(SonatypeKeys.sonatypeReleaseAll in root)
