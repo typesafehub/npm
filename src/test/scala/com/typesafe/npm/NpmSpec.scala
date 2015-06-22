@@ -29,13 +29,13 @@ class NpmSpec extends Specification with NoTimeConversions {
 
           val to = new File(new File("target"), "webjars")
           val cacheFile = new File(to, "extraction-cache")
-          val npm = new Npm(engine, NpmLoader.load(to, cacheFile, this.getClass.getClassLoader))
+          val npm = new Npm(engine, NpmLoader.load(to, cacheFile, this.getClass.getClassLoader), verbose = true)
           val pendingResult = npm.update()
 
           val result = Await.result(pendingResult, timeout.duration)
 
           result.exitValue must_== 0
-          new String(result.error.toArray, "UTF-8") must contain("npm http GET https://registry.npmjs.org/amdefine/latest")
+          new String(result.error.toArray, "UTF-8") must contain("npm http request GET https://registry.npmjs.org/amdefine")
       }
 
     }
