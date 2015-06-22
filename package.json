@@ -2,6 +2,7 @@
     "name": "somename",
     "version": "1.0.0",
     "dependencies": {
-         "amdefine": "0.1.0"
+         "amdefine": "0.1.0",
+         "jsdom": "^1.0.3"
     }
 }
