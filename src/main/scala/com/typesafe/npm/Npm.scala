@@ -13,13 +13,16 @@ import akka.util.Timeout
 /**
  * A JVM class for performing NPM commands. Requires a JS engine to use.
  */
-class Npm(engine: ActorRef, npmFile: File) {
+class Npm(engine: ActorRef, npmFile: File, verbose: Boolean = false) {
+
+  def this(engine: ActorRef, npmFile: File) = this(engine, npmFile, false)
 
   def update(global: Boolean = false, names: Seq[String] = Nil)
             (implicit timeout: Timeout): Future[JsExecutionResult] = {
     val args = ListBuffer[String]()
     args += "update"
     if (global) args += "-g"
+    if (verbose) args += "--verbose"
     args ++= names
     invokeNpm(args)
   }
