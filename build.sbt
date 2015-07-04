@@ -1,18 +1,16 @@
 organization := "com.typesafe"
 name := "npm"
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.10.6"
 
 libraryDependencies ++= Seq(
-  "com.typesafe" %% "jse" % "1.1.2",
+  "com.typesafe" %% "jse" % "1.2.0",
   "org.webjars" % "npm" % "2.11.2",
-  "com.typesafe.akka" %% "akka-actor" % "2.3.11",
-  "org.webjars" % "webjars-locator" % "0.25",
-  "org.specs2" %% "specs2-core" % "3.4" % "test",
-  "junit" % "junit" % "4.11" % "test"
+  "com.typesafe.akka" %% "akka-actor" % "2.3.16",
+  "org.webjars" % "webjars-locator-core" % "0.32",
+  "org.specs2" %% "specs2-core" % "3.8.8" % "test",
+  "junit" % "junit" % "4.12" % "test"
 )
-// Required by specs2 to get scalaz-stream
-resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 
 lazy val root = project in file(".")
 
