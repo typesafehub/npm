@@ -5,7 +5,7 @@ scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
   "com.typesafe" %% "jse" % "1.1.2",
-  "org.webjars" % "npm" % "2.11.2",
+  "org.webjars" % "npm" % "2.14.14",
   "com.typesafe.akka" %% "akka-actor" % "2.3.11",
   "org.webjars" % "webjars-locator" % "0.25",
   "org.specs2" %% "specs2-core" % "3.4" % "test",
