@@ -35,7 +35,16 @@ class NpmSpec extends Specification with NoTimeConversions {
           val result = Await.result(pendingResult, timeout.duration)
 
           result.exitValue must_== 0
-          new String(result.error.toArray, "UTF-8") must contain("npm http request GET https://registry.npmjs.org/amdefine")
+          val stdErr = new String(result.error.toArray, "UTF-8")
+          val stdOut = new String(result.output.toArray, "UTF-8")
+          println("=== STDERR ===")
+          println(stdErr)
+          println()
+          println("=== STDOUT ===")
+          println(stdOut)
+
+          stdErr must contain("npm http request GET https://registry.npmjs.org/amdefine")
+          stdOut must contain("> node-gyp rebuild")
       }
 
     }
