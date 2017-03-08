@@ -40,12 +40,28 @@ pomExtra := {
 pomIncludeRepository := { _ => false }
 
 // Sonatype settings
-sonatypeSettings
-SonatypeKeys.profileName := "com.typesafe"
+
+xerial.sbt.Sonatype.SonatypeKeys.sonatypeProfileName := "com.typesafe"
 
 // Release settings
-releaseSettings
-ReleaseKeys.crossBuild := true
-ReleaseKeys.publishArtifactsAction := PgpKeys.publishSigned.value
-ReleaseKeys.tagName := (version in ThisBuild).value
-ReleaseKeys.releaseProcess += sbtrelease.releaseTask(SonatypeKeys.sonatypeReleaseAll)
+
+releaseCrossBuild := true
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
+releaseTagName := (version in ThisBuild).value
+
+import ReleaseTransformations._
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runClean,
+  runTest,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  ReleaseStep(action = Command.process("publishSigned", _)),
+  setNextVersion,
+  commitNextVersion,
+  ReleaseStep(action = Command.process("sonatypeReleaseAll", _)),
+  pushChanges
+)
