@@ -1,4 +1,12 @@
 target
+node_modules/
+
+# Intellij
 .idea
 *.iml
-node_modules/
+
+# Eclipse
+bin/
+.classpath
+.project
+.settings/
