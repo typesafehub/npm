@@ -1,12 +1,12 @@
 package com.typesafe.jse
 
-import org.specs2.mutable.Specification
-import java.io.File
-import org.specs2.time.NoTimeConversions
 import akka.util.Timeout
 import akka.actor.{ActorRef, ActorSystem}
 import com.typesafe.npm.{Npm, NpmLoader}
-
+import java.io.File
+import org.apache.commons.io.FileUtils
+import org.specs2.mutable.Specification
+import org.specs2.time.NoTimeConversions
 import scala.concurrent.Await
 import scala.concurrent.duration._
 
@@ -35,10 +35,13 @@ class NpmSpec extends Specification with NoTimeConversions {
   }
 
   "Npm" should {
-    "perform an update and retrieve resources" in {
+    "perform an update, retrieve resources, and execute node-gyp (the native compilation tool)" in {
       withEngine {
         engine =>
           implicit val timeout = Timeout(60.seconds)
+
+          // cleanup from any past tests
+          FileUtils.deleteDirectory(new File("node_modules"));
 
           val to = new File(new File("target"), "webjars")
           val cacheFile = new File(to, "extraction-cache")
@@ -47,7 +50,6 @@ class NpmSpec extends Specification with NoTimeConversions {
 
           val result = Await.result(pendingResult, timeout.duration)
 
-          result.exitValue must_== 0
           val stdErr = new String(result.error.toArray, "UTF-8")
           val stdOut = new String(result.output.toArray, "UTF-8")
           println("=== STDERR ===")
@@ -56,6 +58,7 @@ class NpmSpec extends Specification with NoTimeConversions {
           println("=== STDOUT ===")
           println(stdOut)
 
+          result.exitValue must_== 0
           stdErr must contain("npm http request GET https://registry.npmjs.org/amdefine")
           stdOut must contain("> node-gyp rebuild")
       }

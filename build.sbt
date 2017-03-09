@@ -5,9 +5,10 @@ scalaVersion := "2.10.6"
 
 libraryDependencies ++= Seq(
   "com.typesafe" %% "jse" % "1.2.0",
-  "org.webjars" % "npm" % "4.2.0",
+  "org.webjars" % "npm" % "2.14.14",
   "com.typesafe.akka" %% "akka-actor" % "2.3.16",
   "org.webjars" % "webjars-locator-core" % "0.32",
+  "commons-io" % "commons-io" % "2.5" % "test",
   "org.specs2" %% "specs2-core" % "3.8.8" % "test",
   "junit" % "junit" % "4.12" % "test"
 )
@@ -39,12 +40,28 @@ pomExtra := {
 pomIncludeRepository := { _ => false }
 
 // Sonatype settings
-sonatypeSettings
-SonatypeKeys.profileName := "com.typesafe"
+
+xerial.sbt.Sonatype.SonatypeKeys.sonatypeProfileName := "com.typesafe"
 
 // Release settings
-releaseSettings
-ReleaseKeys.crossBuild := true
-ReleaseKeys.publishArtifactsAction := PgpKeys.publishSigned.value
-ReleaseKeys.tagName := (version in ThisBuild).value
-ReleaseKeys.releaseProcess += sbtrelease.releaseTask(SonatypeKeys.sonatypeReleaseAll)
+
+releaseCrossBuild := true
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
+releaseTagName := (version in ThisBuild).value
+
+import ReleaseTransformations._
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runClean,
+  runTest,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  ReleaseStep(action = Command.process("publishSigned", _)),
+  setNextVersion,
+  commitNextVersion,
+  ReleaseStep(action = Command.process("sonatypeReleaseAll", _)),
+  pushChanges
+)
