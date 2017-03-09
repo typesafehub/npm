@@ -2,7 +2,7 @@ package com.typesafe.jse
 
 import akka.util.Timeout
 import akka.actor.{ActorRef, ActorSystem}
-import com.typesafe.npm.{NpmLoader, Npm}
+import com.typesafe.npm.{Npm, NpmLoader}
 import java.io.File
 import org.apache.commons.io.FileUtils
 import org.specs2.mutable.Specification
@@ -13,7 +13,19 @@ import scala.concurrent.duration._
 class NpmSpec extends Specification with NoTimeConversions {
 
   def withEngine[T](block: ActorRef => T): T = {
-    val system = ActorSystem("test-system")
+    // First, clean up node_modules, if it exists
+    def delete(file: File): Unit = {
+      if (file.exists) {
+        if (file.isDirectory) {
+          file.listFiles().foreach(delete)
+        }
+        file.delete()
+      }
+    }
+    delete(new File("node_modules"))
+
+
+    val system = ActorSystem("test-system", classLoader = Some(this.getClass.getClassLoader))
     try {
       val engine = system.actorOf(Trireme.props(), "engine")
       block(engine)
