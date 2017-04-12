@@ -15,7 +15,7 @@ class NpmSpec extends Specification with NoTimeConversions {
   def withEngine[T](block: ActorRef => T): T = {
     val system = ActorSystem("test-system", classLoader = Some(this.getClass.getClassLoader))
     try {
-      val engine = system.actorOf(Trireme.props(), "engine")
+      val engine = system.actorOf(Node.props(), "engine")
       block(engine)
     } finally {
       system.shutdown()

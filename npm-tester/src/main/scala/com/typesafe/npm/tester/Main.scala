@@ -2,7 +2,7 @@ package com.typesafe.npm.tester
 
 import akka.actor.ActorSystem
 
-import com.typesafe.jse.{Trireme, Node}
+import com.typesafe.jse.Node
 import akka.util.Timeout
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -19,7 +19,7 @@ object Main {
       System.exit(1)
     }
 
-    val engine = system.actorOf(Trireme.props(), "engine")
+    val engine = system.actorOf(Node.props(), "engine")
     val to = new File(new File("target"), "webjars")
     val cacheFile = new File(to, "extraction-cache")
     val npm = new Npm(engine, NpmLoader.load(to, cacheFile, Main.getClass.getClassLoader))

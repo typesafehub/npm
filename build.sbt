@@ -4,8 +4,8 @@ name := "npm"
 scalaVersion := "2.10.6"
 
 libraryDependencies ++= Seq(
-  "com.typesafe" %% "jse" % "1.2.0",
-  "org.webjars" % "npm" % "2.14.14",
+  "com.typesafe" %% "jse" % "1.2.1",
+  "org.webjars" % "npm" % "4.2.0",
   "com.typesafe.akka" %% "akka-actor" % "2.3.16",
   "org.webjars" % "webjars-locator-core" % "0.32",
   "commons-io" % "commons-io" % "2.5" % "test",

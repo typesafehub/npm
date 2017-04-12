@@ -1,14 +1,15 @@
 package com.typesafe.npm
 
 import akka.actor.ActorRef
-import scala.concurrent.Future
-import com.typesafe.jse.Engine
-import scala.collection.immutable
-import com.typesafe.jse.Engine.JsExecutionResult
 import akka.pattern.ask
-import scala.collection.mutable.ListBuffer
-import java.io.File
 import akka.util.Timeout
+import com.typesafe.jse.Engine
+import com.typesafe.jse.Engine.JsExecutionResult
+import java.io.File
+import scala.collection.immutable
+import scala.collection.mutable.ListBuffer
+import scala.concurrent.Await
+import scala.concurrent.Future
 
 /**
  * A JVM class for performing NPM commands. Requires a JS engine to use.
@@ -30,8 +31,12 @@ class Npm(engine: ActorRef, npmFile: File, verbose: Boolean = false) {
   // TODO: Stream the stdio Source objects once they become available.
   private def invokeNpm(args: ListBuffer[String])
                        (implicit timeout: Timeout): Future[JsExecutionResult] = {
+    if (!Await.result((engine ? Engine.IsNode).mapTo[Boolean], timeout.duration)) {
+      throw new IllegalStateException("node not found: a Node.js installation is required to run npm.")
+    }
     (engine ? Engine.ExecuteJs(npmFile, args.to[immutable.Seq], timeout.duration)).mapTo[JsExecutionResult]
   }
+
 }
 
 
