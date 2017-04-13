@@ -5,8 +5,7 @@ npm
 
 This is a JVM wrapper around the [Node Package Manager (NPM)](http://npmjs.org).
 The NPM that is run is the real NPM. The [JS Engine project](http://githubc.com/typesafe/js-engine) is
-used to execute NPM either using [Trireme](https://github.com/apigee/trireme#trireme)
-(a Node API implementation) or [Node](http://nodejs.org) itself.
+used to execute NPM using [Node](http://nodejs.org) itself.
 
 A [WebJar](http://www.webjars.org/) is used to download the NPM source files.
 
@@ -27,5 +26,3 @@ Some sample usage from Scala:
       println(s"output\n======\n${new String(result.output.toArray, "UTF-8")}\n")
       println(s"error\n=====\n${new String(result.error.toArray, "UTF-8")}\n")
 ```
-
-> Note that this module requires JDK 7 when running Trireme given the additional file system support required. If JDK 6 is required then use Node as the engine.

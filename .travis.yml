@@ -1,3 +1,9 @@
+dist: trusty
+
 jdk: oraclejdk8
 language: scala
+
+install:
+  - nvm install 7.9.0
+
 script: sbt test
