@@ -6,4 +6,4 @@ language: scala
 install:
   - nvm install 7.9.0
 
-script: sbt test
+script: sbt +test

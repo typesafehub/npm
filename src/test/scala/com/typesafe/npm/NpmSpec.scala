@@ -1,8 +1,8 @@
-package com.typesafe.jse
+package com.typesafe.npm
 
 import akka.util.Timeout
 import akka.actor.{ActorRef, ActorSystem}
-import com.typesafe.npm.{Npm, NpmLoader}
+import com.typesafe.jse._
 import java.io.File
 import org.apache.commons.io.FileUtils
 import org.specs2.mutable.Specification
@@ -18,7 +18,7 @@ class NpmSpec extends Specification with NoTimeConversions {
       val engine = system.actorOf(Node.props(), "engine")
       block(engine)
     } finally {
-      system.shutdown()
+      AkkaCompat.terminate(system)
     }
   }
 
