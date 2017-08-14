@@ -2,16 +2,24 @@ organization := "com.typesafe"
 name := "npm"
 
 scalaVersion := "2.10.6"
+crossScalaVersions := Seq(scalaVersion.value, "2.11.11", "2.12.3")
 
-libraryDependencies ++= Seq(
-  "com.typesafe" %% "jse" % "1.2.2",
-  "org.webjars" % "npm" % "4.2.0",
-  "com.typesafe.akka" %% "akka-actor" % "2.3.16",
-  "org.webjars" % "webjars-locator-core" % "0.32",
-  "commons-io" % "commons-io" % "2.5" % "test",
-  "org.specs2" %% "specs2-core" % "3.8.8" % "test",
-  "junit" % "junit" % "4.12" % "test"
-)
+libraryDependencies ++= {
+  val akkaVersion = scalaBinaryVersion.value match {
+    case "2.10" => "2.3.16"
+    case "2.11" => "2.3.16"
+    case "2.12" => "2.5.4"
+  }
+  Seq(
+    "com.typesafe" %% "jse" % "1.2.3",
+    "org.webjars" % "npm" % "4.2.0",
+    "com.typesafe.akka" %% "akka-actor" % akkaVersion,
+    "org.webjars" % "webjars-locator-core" % "0.32",
+    "commons-io" % "commons-io" % "2.5" % "test",
+    "org.specs2" %% "specs2-core" % "3.8.8" % "test",
+    "junit" % "junit" % "4.12" % "test"
+  )
+}
 
 lazy val root = project in file(".")
 
