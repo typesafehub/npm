@@ -14,8 +14,8 @@ libraryDependencies ++= {
     "com.typesafe" %% "jse" % "1.2.3",
     "org.webjars" % "npm" % "4.2.0",
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
-    "org.webjars" % "webjars-locator-core" % "0.32",
-    "commons-io" % "commons-io" % "2.5" % "test",
+    "org.webjars" % "webjars-locator-core" % "0.35",
+    "commons-io" % "commons-io" % "2.6" % "test",
     "org.specs2" %% "specs2-core" % "3.8.8" % "test",
     "junit" % "junit" % "4.12" % "test"
   )
