@@ -1,22 +1,22 @@
 organization := "com.typesafe"
 name := "npm"
 
-scalaVersion := "2.10.6"
-crossScalaVersions := Seq(scalaVersion.value, "2.11.11", "2.12.3")
+scalaVersion := "2.10.7"
+crossScalaVersions := Seq(scalaVersion.value, "2.11.12", "2.12.7")
 
 libraryDependencies ++= {
   val akkaVersion = scalaBinaryVersion.value match {
     case "2.10" => "2.3.16"
     case "2.11" => "2.3.16"
-    case "2.12" => "2.5.4"
+    case "2.12" => "2.5.18"
   }
   Seq(
     "com.typesafe" %% "jse" % "1.2.3",
-    "org.webjars" % "npm" % "4.2.0",
+    "org.webjars" % "npm" % "5.0.0-2",
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
-    "org.webjars" % "webjars-locator-core" % "0.35",
+    "org.webjars" % "webjars-locator-core" % "0.36",
     "commons-io" % "commons-io" % "2.6" % "test",
-    "org.specs2" %% "specs2-core" % "3.8.8" % "test",
+    "org.specs2" %% "specs2-core" % "3.10.0" % "test",
     "junit" % "junit" % "4.12" % "test"
   )
 }
