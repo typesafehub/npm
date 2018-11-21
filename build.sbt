@@ -11,7 +11,7 @@ libraryDependencies ++= {
     case "2.12" => "2.5.18"
   }
   Seq(
-    "com.typesafe" %% "jse" % "1.2.3",
+    "com.typesafe" %% "jse" % "1.2.4",
     "org.webjars" % "npm" % "5.0.0-2",
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "org.webjars" % "webjars-locator-core" % "0.36",
