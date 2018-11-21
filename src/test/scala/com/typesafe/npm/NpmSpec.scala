@@ -6,11 +6,10 @@ import com.typesafe.jse._
 import java.io.File
 import org.apache.commons.io.FileUtils
 import org.specs2.mutable.Specification
-import org.specs2.time.NoTimeConversions
 import scala.concurrent.Await
 import scala.concurrent.duration._
 
-class NpmSpec extends Specification with NoTimeConversions {
+class NpmSpec extends Specification {
 
   def withEngine[T](block: ActorRef => T): T = {
     val system = ActorSystem("test-system", classLoader = Some(this.getClass.getClassLoader))
