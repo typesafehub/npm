@@ -2,7 +2,7 @@
     "name": "somename",
     "version": "1.0.0",
     "dependencies": {
-         "amdefine": "0.1.0",
-         "aerospike": "^2.5.1"
+        "aerospike": "^3.7.2",
+        "amdefine": "^1.0.1"
     }
 }
