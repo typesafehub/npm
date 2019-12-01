@@ -31,8 +31,7 @@ class NpmSpec extends Specification {
           FileUtils.deleteDirectory(new File("node_modules"));
 
           val to = new File(new File("target"), "webjars")
-          val cacheFile = new File(to, "extraction-cache")
-          val npm = new Npm(engine, NpmLoader.load(to, cacheFile, this.getClass.getClassLoader), verbose = true)
+          val npm = new Npm(engine, NpmLoader.load(to, this.getClass.getClassLoader), verbose = true)
           val pendingResult = npm.update()
 
           val result = Await.result(pendingResult, timeout.duration)

@@ -14,9 +14,8 @@ Some sample usage from Scala:
 ```scala
     val engine = system.actorOf(Node.props(), "engine")
     val to = new File(new File("target"), "webjars")
-    val cacheFile = new File(to, "extraction-cache")
     
-    val npm = new Npm(engine, NpmLoader.load(to, cacheFile, Main.getClass.getClassLoader))
+    val npm = new Npm(engine, NpmLoader.load(to, Main.getClass.getClassLoader))
     
     for (
       result <- npm.update()  // Perform an "npm update"
