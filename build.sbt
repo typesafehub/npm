@@ -2,17 +2,28 @@ organization := "com.typesafe"
 name := "npm"
 
 scalaVersion := "2.10.7"
-crossScalaVersions := Seq(scalaVersion.value, "2.11.12", "2.12.10")
+crossScalaVersions := Seq(scalaVersion.value, "2.11.12", "2.12.13")
 
 libraryDependencies ++= {
   val akkaVersion = scalaBinaryVersion.value match {
     case "2.10" => "2.3.16"
     case "2.11" => "2.5.26"
-    case "2.12" => "2.6.0"
+    case "2.12" => "2.6.14"
   }
   Seq(
     "com.typesafe" %% "jse" % "1.2.4",
-    "org.webjars" % "npm" % "5.0.0-2",
+	// workaround to resolve dependency resolution error
+    "org.webjars.npm" % "lodash._baseindexof" % "3.1.0",
+    "org.webjars.npm" % "lodash._cacheindexof" % "3.0.2",
+    "org.webjars.npm" % "lodash._getnative" % "3.9.1",
+	// for npm 6.14.11
+	"org.webjars.npm" % "lodash._bindcallback" % "3.0.1",
+	"org.webjars.npm" % "lodash.restparam" % "3.6.1",
+	"org.webjars.npm" % "lodash._createcache" % "3.1.2",
+	"org.webjars.npm" % "debuglog" % "1.0.1",
+	"org.webjars.npm" % "imurmurhash" % "0.1.4",
+	// end of workaround
+    "org.webjars.npm" % "npm" % "6.14.11",
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "org.webjars" % "webjars-locator-core" % "0.43",
     "commons-io" % "commons-io" % "2.6" % "test",
